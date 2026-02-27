@@ -6,34 +6,26 @@ from views.add_lecture_view import AddLectureView
 
 def main(page: ft.Page):
     page.title = "מערכת שעות"
-    page.rtl = True # הגדרה קריטית לעברית (מימין לשמאל)
+    page.rtl = True
     page.theme_mode = ft.ThemeMode.LIGHT
     
-    # אתחול הלוח השבועי והכנסת הרצאה אחת לדוגמה
     my_schedule = WeeklySchedule()
     dummy_lec = Lecture("1", "פיתוח אפליקציות", "בוט חכם", "ראשון", "09:00", "11:00", "מעבדה 1")
     my_schedule.add_lecture(dummy_lec)
 
-    def route_change(route):
-        page.views.clear()
+    def change_screen(screen_name):
+        # SPA approach: manipulate controls instead of page.views 
+        # to prevent Linux FlutterEngine GTK/OpenGL crashes.
+        page.controls.clear() 
         
-        # ניתוב לעמודים השונים
-        if page.route == "/":
-            page.views.append(ScheduleView(page, my_schedule))
-        elif page.route == "/add":
-            page.views.append(AddLectureView(page, my_schedule))
+        if screen_name == "schedule":
+            page.controls.append(ScheduleView(page, my_schedule, change_screen))
+        elif screen_name == "add":
+            page.controls.append(AddLectureView(page, my_schedule, change_screen))
             
         page.update()
 
-    def view_pop(view):
-        page.views.pop()
-        top_view = page.views[-1]
-        page.go(top_view.route)
-
-    page.on_route_change = route_change
-    page.on_view_pop = view_pop
-    
-    page.go("/")
+    change_screen("schedule")
 
 if __name__ == "__main__":
-    ft.app(target=main)
+    ft.run(main)
