@@ -19,9 +19,10 @@ class AddLectureView(ft.Column):
         self.start_input = ft.TextField(label="שעת התחלה (למשל 10:00)", width=150)
         self.end_input = ft.TextField(label="שעת סיום (למשל 12:00)", width=150)
 
+        # Fixed: Using string literal "arrow_forward" instead of ft.icons.ARROW_FORWARD
         header = ft.Container(
             content=ft.Row([
-                ft.IconButton(icon=ft.icons.ARROW_FORWARD, icon_color="white", on_click=lambda _: self.change_screen("schedule")),
+                ft.IconButton(icon="arrow_forward", icon_color="white", on_click=lambda _: self.change_screen("schedule")),
                 ft.Text("הוספת הרצאה", size=20, weight="bold", color="white")
             ]),
             bgcolor="#1976D2",

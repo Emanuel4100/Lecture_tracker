@@ -21,12 +21,13 @@ class ScheduleView(ft.Column):
             content=ft.Text("מערכת השעות שלי", size=24, weight="bold", color="white"),
             bgcolor="#1976D2",
             padding=15,
-            alignment=ft.alignment.center, # Updated to direct object
+            alignment=ft.Alignment(0, 0), 
             border_radius=10
         )
 
+        # Fixed: Using string literal "add" instead of ft.icons.ADD
         add_btn = ft.FloatingActionButton(
-            icon=ft.icons.ADD, 
+            icon="add", 
             bgcolor="#FFC107", 
             on_click=lambda _: self.change_screen("add")
         )
@@ -40,8 +41,10 @@ class ScheduleView(ft.Column):
 
     def build_tabs(self):
         self.tabs_row.controls.clear()
+        
         for day in self.days:
             is_selected = (day == self.selected_day)
+            
             btn = ft.TextButton(
                 content=ft.Text(
                     day, 
@@ -72,7 +75,7 @@ class ScheduleView(ft.Column):
             day_list_view.controls.append(
                 ft.Container(
                     content=ft.Text(f"אין הרצאות ביום {self.selected_day} 🎉", size=16, color="grey"), 
-                    alignment=ft.alignment.CENTER, # Updated
+                    alignment=ft.Alignment(0, 0), 
                     padding=50
                 )
             )
