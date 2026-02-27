@@ -1,27 +1,30 @@
 import flet as ft
-from models.schedule import WeeklySchedule
-from models.lecture import Lecture
+from models.schedule import SemesterSchedule
 from views.schedule_view import ScheduleView
-from views.add_lecture_view import AddLectureView
+from views.add_course_view import AddCourseView
+from views.onboarding_view import OnboardingView
+from views.settings_view import SettingsView
 
 def main(page: ft.Page):
-    page.title = "מערכת שעות"
+    page.title = "מעקב הרצאות לסטודנט"
     page.rtl = True
     page.theme_mode = ft.ThemeMode.LIGHT
     
-    my_schedule = WeeklySchedule()
-    dummy_lec = Lecture("1", "פיתוח אפליקציות", "בוט חכם", "ראשון", "09:00", "11:00", "מעבדה 1")
-    my_schedule.add_lecture(dummy_lec)
+    my_schedule = SemesterSchedule()
 
     def change_screen(screen_name):
-        # SPA approach: manipulate controls instead of page.views 
-        # to prevent Linux FlutterEngine GTK/OpenGL crashes.
         page.controls.clear() 
         
-        if screen_name == "schedule":
-            page.controls.append(ScheduleView(page, my_schedule, change_screen))
-        elif screen_name == "add":
-            page.controls.append(AddLectureView(page, my_schedule, change_screen))
+        # Display Onboarding wizard if semester dates are not set
+        if not my_schedule.is_semester_set():
+            page.controls.append(OnboardingView(page, my_schedule, change_screen))
+        else:
+            if screen_name == "schedule":
+                page.controls.append(ScheduleView(page, my_schedule, change_screen))
+            elif screen_name == "add":
+                page.controls.append(AddCourseView(page, my_schedule, change_screen))
+            elif screen_name == "settings":
+                page.controls.append(SettingsView(page, my_schedule, change_screen))
             
         page.update()
 
