@@ -11,11 +11,11 @@ def main(page: ft.Page):
     page.theme_mode = ft.ThemeMode.LIGHT
     
     my_schedule = SemesterSchedule()
+    my_schedule.load_from_file()
 
     def change_screen(screen_name):
         page.controls.clear() 
         
-        # Display Onboarding wizard if semester dates are not set
         if not my_schedule.is_semester_set():
             page.controls.append(OnboardingView(page, my_schedule, change_screen))
         else:
@@ -31,4 +31,4 @@ def main(page: ft.Page):
     change_screen("schedule")
 
 if __name__ == "__main__":
-    ft.run(main)
+    ft.run(main, port=8550, host="0.0.0.0")

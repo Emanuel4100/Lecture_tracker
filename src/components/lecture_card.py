@@ -8,43 +8,42 @@ class LectureCard(ft.Container):
         self.update_callback = update_callback 
         
         self.border_radius = 8
-        self.padding = 10
-        self.margin = ft.margin.only(bottom=10)
+        self.padding = 5
+        self.margin = ft.margin.only(bottom=5)
         
-        self.bgcolor = self.get_bg_color()
+        self.bgcolor = self.lecture.course_color
 
-        self.status_dropdown = ft.Dropdown(
-            value=self.lecture.status,
-            options=[
-                ft.dropdown.Option(LectureStatus.NEEDS_WATCHING),
-                ft.dropdown.Option(LectureStatus.ATTENDED),
-                ft.dropdown.Option(LectureStatus.WATCHED_RECORDING),
-                ft.dropdown.Option(LectureStatus.SKIPPED),
-            ],
-            text_size=12,
-            content_padding=5
-        )
-        
-        self.status_dropdown.on_change = self.status_changed
-        
+        title = ft.Text(self.lecture.title, weight="bold", size=12, color="black87", no_wrap=True, overflow=ft.TextOverflow.ELLIPSIS)
+        time_room = ft.Text(f"{self.lecture.start_time}-{self.lecture.end_time} | {self.lecture.room}", color="black54", size=10)
+
         self.content = ft.Column([
-            ft.Text(self.lecture.title, weight="bold", size=14, color="#0D47A1"),
-            ft.Text(f"{self.lecture.date_str} | {self.lecture.start_time}-{self.lecture.end_time}", color="black", size=11),
-            ft.Text(f"{self.lecture.lecturer} | חדר: {self.lecture.room}", color="grey", size=11),
-            ft.Container(height=2),
-            self.status_dropdown
+            title,
+            time_room,
+            self.build_status_icons()
         ], spacing=2)
 
-    def get_bg_color(self):
-        if self.lecture.status in [LectureStatus.ATTENDED, LectureStatus.WATCHED_RECORDING]:
-            return "#C8E6C9" 
-        elif self.lecture.status == LectureStatus.SKIPPED:
-            return "#FFCDD2" 
-        else:
-            return "#E3F2FD" 
+    def build_status_icons(self):
+        def create_icon(emoji, status_value, tooltip_text):
+            is_active = (self.lecture.status == status_value)
+            
+            return ft.Container(
+                content=ft.Text(emoji, size=14, tooltip=tooltip_text),
+                padding=4,
+                bgcolor="white" if is_active else "transparent",
+                border=ft.border.all(2, "black87") if is_active else None,
+                border_radius=15,
+                on_click=lambda e: self.set_status(status_value)
+            )
 
-    def status_changed(self, e):
-        self.lecture.status = self.status_dropdown.value
-        self.bgcolor = self.get_bg_color()
+        return ft.Row([
+            create_icon("✅", LectureStatus.ATTENDED, "הלכתי"),
+            create_icon("🎥", LectureStatus.WATCHED_RECORDING, "הקלטה"),
+            create_icon("⏳", LectureStatus.NEEDS_WATCHING, "להשלים"),
+            create_icon("❌", LectureStatus.SKIPPED, "דילגתי"),
+            create_icon("🚫", LectureStatus.CANCELLED, "בוטלה"),
+        ], alignment=ft.MainAxisAlignment.SPACE_AROUND)
+
+    def set_status(self, new_status):
+        self.lecture.status = new_status
         if self.update_callback:
             self.update_callback()

@@ -1,0 +1,152 @@
+{
+    "semester_start": "21/02/2026",
+    "semester_end": "30/03/2026",
+    "notify_before_mins": 15,
+    "notify_after_mins": 15,
+    "show_weekend": false,
+    "courses": [
+        {
+            "course_id": "1772285259.7467642",
+            "title": "אינפי",
+            "lecturer": "לא הוגדר",
+            "color": "#C8E6C9",
+            "meetings": [
+                {
+                    "day_name": "שני",
+                    "start_time": "10:00",
+                    "end_time": "13:00",
+                    "room": ""
+                },
+                {
+                    "day_name": "רביעי",
+                    "start_time": "13:00",
+                    "end_time": "16:00",
+                    "room": ""
+                }
+            ],
+            "lectures": [
+                {
+                    "session_id": "1772285259.7468052026-02-2310:00",
+                    "title": "אינפי",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "23/02/2026",
+                    "start_time": "10:00",
+                    "end_time": "13:00",
+                    "room": "",
+                    "status": "צריך לראות את ההקלטה",
+                    "course_color": "#C8E6C9"
+                },
+                {
+                    "session_id": "1772285259.7468712026-02-2513:00",
+                    "title": "אינפי",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "25/02/2026",
+                    "start_time": "13:00",
+                    "end_time": "16:00",
+                    "room": "",
+                    "status": "צריך לראות את ההקלטה",
+                    "course_color": "#C8E6C9"
+                },
+                {
+                    "session_id": "1772285259.74682332026-03-0210:00",
+                    "title": "אינפי",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "02/03/2026",
+                    "start_time": "10:00",
+                    "end_time": "13:00",
+                    "room": "",
+                    "status": "הלכתי לראות",
+                    "course_color": "#C8E6C9"
+                },
+                {
+                    "session_id": "1772285259.74687812026-03-0413:00",
+                    "title": "אינפי",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "04/03/2026",
+                    "start_time": "13:00",
+                    "end_time": "16:00",
+                    "room": "",
+                    "status": "צריך לראות את ההקלטה",
+                    "course_color": "#C8E6C9"
+                },
+                {
+                    "session_id": "1772285259.74683482026-03-0910:00",
+                    "title": "אינפי",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "09/03/2026",
+                    "start_time": "10:00",
+                    "end_time": "13:00",
+                    "room": "",
+                    "status": "ראיתי את ההקלטה",
+                    "course_color": "#C8E6C9"
+                },
+                {
+                    "session_id": "1772285259.74688532026-03-1113:00",
+                    "title": "אינפי",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "11/03/2026",
+                    "start_time": "13:00",
+                    "end_time": "16:00",
+                    "room": "",
+                    "status": "הלכתי לראות",
+                    "course_color": "#C8E6C9"
+                },
+                {
+                    "session_id": "1772285259.74684262026-03-1610:00",
+                    "title": "אינפי",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "16/03/2026",
+                    "start_time": "10:00",
+                    "end_time": "13:00",
+                    "room": "",
+                    "status": "צריך לראות את ההקלטה",
+                    "course_color": "#C8E6C9"
+                },
+                {
+                    "session_id": "1772285259.74689172026-03-1813:00",
+                    "title": "אינפי",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "18/03/2026",
+                    "start_time": "13:00",
+                    "end_time": "16:00",
+                    "room": "",
+                    "status": "צריך לראות את ההקלטה",
+                    "course_color": "#C8E6C9"
+                },
+                {
+                    "session_id": "1772285259.74684952026-03-2310:00",
+                    "title": "אינפי",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "23/03/2026",
+                    "start_time": "10:00",
+                    "end_time": "13:00",
+                    "room": "",
+                    "status": "בוטלה",
+                    "course_color": "#C8E6C9"
+                },
+                {
+                    "session_id": "1772285259.7468982026-03-2513:00",
+                    "title": "אינפי",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "25/03/2026",
+                    "start_time": "13:00",
+                    "end_time": "16:00",
+                    "room": "",
+                    "status": "צריך לראות את ההקלטה",
+                    "course_color": "#C8E6C9"
+                },
+                {
+                    "session_id": "1772285259.74685652026-03-3010:00",
+                    "title": "אינפי",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "30/03/2026",
+                    "start_time": "10:00",
+                    "end_time": "13:00",
+                    "room": "",
+                    "status": "צריך לראות את ההקלטה",
+                    "course_color": "#C8E6C9"
+                }
+            ]
+        }
+    ]
+}
