@@ -4,12 +4,12 @@ from datetime import timedelta
 from models.lecture import LectureSession, LectureStatus
 from utils.i18n import t
 
+# צבעי משטח עדינים (Surface Variants) שמתאימים לסטנדרט M3
 COURSE_COLORS = [
-    "#FFCDD2", "#F8BBD0", "#E1BEE7", "#D1C4E9", "#C5CAE9", 
-    "#BBDEFB", "#B3E5FC", "#B2EBF2", "#B2DFDB", "#C8E6C9", 
-    "#DCEDC8", "#F0F4C3", "#FFF9C4", "#FFECB3", "#FFE0B2"
+    "#F3E5F5", "#E8EAF6", "#E3F2FD", "#E0F7FA", "#E0F2F1",
+    "#E8F5E9", "#F1F8E9", "#F9FBE7", "#FFF3E0", "#FBE9E7",
+    "#EFEBE9", "#FAFAFA", "#ECEFF1", "#FFEBEE", "#FFF8E1"
 ]
-
 class Course:
     def __init__(self, course_id, title, lecturer="", course_code="", link=""):
         self.course_id = course_id
