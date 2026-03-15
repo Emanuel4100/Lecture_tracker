@@ -1,402 +1,614 @@
 {
-    "semester_start": "14/03/2026",
-    "semester_end": "30/05/2026",
+    "semester_start": "07/03/2026",
+    "semester_end": "29/04/2026",
     "notify_before_mins": 15,
     "notify_after_mins": 15,
     "show_weekend": false,
+    "language": "he",
     "courses": [
         {
-            "course_id": "1773594697.606977",
+            "course_id": "1773599261.5672803",
             "title": "מבנה המחשב",
             "lecturer": "לא הוגדר",
             "course_code": "67200",
-            "color": "#FFECB3",
+            "link": "",
+            "color": "#D1C4E9",
             "meetings": [
                 {
-                    "day_name": "שלישי",
+                    "day_name": "days.sunday",
                     "start_time": "10:00",
                     "end_time": "12:00",
                     "location": "קנדה",
-                    "meeting_type": "תרגול"
+                    "meeting_type": "meeting_types.lecture"
                 },
                 {
-                    "day_name": "ראשון",
+                    "day_name": "days.wednesday",
+                    "start_time": "15:00",
+                    "end_time": "16:00",
+                    "location": "קנדה",
+                    "meeting_type": "meeting_types.lecture"
+                },
+                {
+                    "day_name": "days.sunday",
                     "start_time": "10:00",
                     "end_time": "12:00",
-                    "location": "קנדה",
-                    "meeting_type": "הרצאה"
+                    "location": "",
+                    "meeting_type": "meeting_types.lab"
                 },
                 {
-                    "day_name": "ראשון",
-                    "start_time": "13:00",
-                    "end_time": "18:00",
-                    "location": "קנדה",
-                    "meeting_type": "מעבדה"
+                    "day_name": "days.wednesday",
+                    "start_time": "14:00",
+                    "end_time": "17:00",
+                    "location": "",
+                    "meeting_type": "meeting_types.lab"
                 }
             ],
             "lectures": [
                 {
-                    "session_id": "1773594697.60716412026-03-1510:00",
+                    "session_id": "1773599261.56732492026-03-0810:00",
+                    "title": "מבנה המחשב - הרצאה",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "08/03/2026",
+                    "start_time": "10:00",
+                    "end_time": "12:00",
+                    "room": "קנדה",
+                    "status": "status.attended",
+                    "course_color": "#D1C4E9"
+                },
+                {
+                    "session_id": "1773600720.8372982026-03-0810:00",
+                    "title": "מבנה המחשב - מעבדה",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "08/03/2026",
+                    "start_time": "10:00",
+                    "end_time": "12:00",
+                    "room": "",
+                    "status": "status.attended",
+                    "course_color": "#D1C4E9"
+                },
+                {
+                    "session_id": "1773600735.33619672026-03-1114:00",
+                    "title": "מבנה המחשב - מעבדה",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "11/03/2026",
+                    "start_time": "14:00",
+                    "end_time": "17:00",
+                    "room": "",
+                    "status": "status.skipped",
+                    "course_color": "#D1C4E9"
+                },
+                {
+                    "session_id": "1773599261.5674272026-03-1115:00",
+                    "title": "מבנה המחשב - הרצאה",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "11/03/2026",
+                    "start_time": "15:00",
+                    "end_time": "16:00",
+                    "room": "קנדה",
+                    "status": "status.skipped",
+                    "course_color": "#D1C4E9"
+                },
+                {
+                    "session_id": "1773599261.56735252026-03-1510:00",
                     "title": "מבנה המחשב - הרצאה",
                     "lecturer": "לא הוגדר",
                     "date_str": "15/03/2026",
                     "start_time": "10:00",
                     "end_time": "12:00",
                     "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
+                    "status": "status.attended",
+                    "course_color": "#D1C4E9"
                 },
                 {
-                    "session_id": "1773594697.60725162026-03-1513:00",
+                    "session_id": "1773600720.83732222026-03-1510:00",
                     "title": "מבנה המחשב - מעבדה",
                     "lecturer": "לא הוגדר",
                     "date_str": "15/03/2026",
-                    "start_time": "13:00",
-                    "end_time": "18:00",
-                    "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
-                },
-                {
-                    "session_id": "1773594697.60704352026-03-1710:00",
-                    "title": "מבנה המחשב - תרגול",
-                    "lecturer": "לא הוגדר",
-                    "date_str": "17/03/2026",
                     "start_time": "10:00",
                     "end_time": "12:00",
-                    "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
+                    "room": "",
+                    "status": "status.skipped",
+                    "course_color": "#D1C4E9"
                 },
                 {
-                    "session_id": "1773594697.60717182026-03-2210:00",
+                    "session_id": "1773600735.33622222026-03-1814:00",
+                    "title": "מבנה המחשב - מעבדה",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "18/03/2026",
+                    "start_time": "14:00",
+                    "end_time": "17:00",
+                    "room": "",
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
+                },
+                {
+                    "session_id": "1773599261.5674362026-03-1815:00",
+                    "title": "מבנה המחשב - הרצאה",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "18/03/2026",
+                    "start_time": "15:00",
+                    "end_time": "16:00",
+                    "room": "קנדה",
+                    "status": "status.attended",
+                    "course_color": "#D1C4E9"
+                },
+                {
+                    "session_id": "1773599261.56736662026-03-2210:00",
                     "title": "מבנה המחשב - הרצאה",
                     "lecturer": "לא הוגדר",
                     "date_str": "22/03/2026",
                     "start_time": "10:00",
                     "end_time": "12:00",
                     "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
                 },
                 {
-                    "session_id": "1773594697.60727142026-03-2213:00",
+                    "session_id": "1773600720.83733372026-03-2210:00",
                     "title": "מבנה המחשב - מעבדה",
                     "lecturer": "לא הוגדר",
                     "date_str": "22/03/2026",
-                    "start_time": "13:00",
-                    "end_time": "18:00",
-                    "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
-                },
-                {
-                    "session_id": "1773594697.6070682026-03-2410:00",
-                    "title": "מבנה המחשב - תרגול",
-                    "lecturer": "לא הוגדר",
-                    "date_str": "24/03/2026",
                     "start_time": "10:00",
                     "end_time": "12:00",
-                    "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
+                    "room": "",
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
                 },
                 {
-                    "session_id": "1773594697.60717942026-03-2910:00",
+                    "session_id": "1773600735.33623342026-03-2514:00",
+                    "title": "מבנה המחשב - מעבדה",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "25/03/2026",
+                    "start_time": "14:00",
+                    "end_time": "17:00",
+                    "room": "",
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
+                },
+                {
+                    "session_id": "1773599261.56744362026-03-2515:00",
+                    "title": "מבנה המחשב - הרצאה",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "25/03/2026",
+                    "start_time": "15:00",
+                    "end_time": "16:00",
+                    "room": "קנדה",
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
+                },
+                {
+                    "session_id": "1773599261.56737662026-03-2910:00",
                     "title": "מבנה המחשב - הרצאה",
                     "lecturer": "לא הוגדר",
                     "date_str": "29/03/2026",
                     "start_time": "10:00",
                     "end_time": "12:00",
                     "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
                 },
                 {
-                    "session_id": "1773594697.60727832026-03-2913:00",
+                    "session_id": "1773600720.83734252026-03-2910:00",
                     "title": "מבנה המחשב - מעבדה",
                     "lecturer": "לא הוגדר",
                     "date_str": "29/03/2026",
-                    "start_time": "13:00",
-                    "end_time": "18:00",
-                    "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
-                },
-                {
-                    "session_id": "1773594697.60708022026-03-3110:00",
-                    "title": "מבנה המחשב - תרגול",
-                    "lecturer": "לא הוגדר",
-                    "date_str": "31/03/2026",
                     "start_time": "10:00",
                     "end_time": "12:00",
-                    "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
+                    "room": "",
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
                 },
                 {
-                    "session_id": "1773594697.60718682026-04-0510:00",
+                    "session_id": "1773600735.3362422026-04-0114:00",
+                    "title": "מבנה המחשב - מעבדה",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "01/04/2026",
+                    "start_time": "14:00",
+                    "end_time": "17:00",
+                    "room": "",
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
+                },
+                {
+                    "session_id": "1773599261.56745152026-04-0115:00",
+                    "title": "מבנה המחשב - הרצאה",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "01/04/2026",
+                    "start_time": "15:00",
+                    "end_time": "16:00",
+                    "room": "קנדה",
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
+                },
+                {
+                    "session_id": "1773599261.56738542026-04-0510:00",
                     "title": "מבנה המחשב - הרצאה",
                     "lecturer": "לא הוגדר",
                     "date_str": "05/04/2026",
                     "start_time": "10:00",
                     "end_time": "12:00",
                     "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
                 },
                 {
-                    "session_id": "1773594697.60728552026-04-0513:00",
+                    "session_id": "1773600720.83735062026-04-0510:00",
                     "title": "מבנה המחשב - מעבדה",
                     "lecturer": "לא הוגדר",
                     "date_str": "05/04/2026",
-                    "start_time": "13:00",
-                    "end_time": "18:00",
-                    "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
-                },
-                {
-                    "session_id": "1773594697.607092026-04-0710:00",
-                    "title": "מבנה המחשב - תרגול",
-                    "lecturer": "לא הוגדר",
-                    "date_str": "07/04/2026",
                     "start_time": "10:00",
                     "end_time": "12:00",
-                    "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
+                    "room": "",
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
                 },
                 {
-                    "session_id": "1773594697.60719372026-04-1210:00",
+                    "session_id": "1773600735.33624982026-04-0814:00",
+                    "title": "מבנה המחשב - מעבדה",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "08/04/2026",
+                    "start_time": "14:00",
+                    "end_time": "17:00",
+                    "room": "",
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
+                },
+                {
+                    "session_id": "1773599261.56745892026-04-0815:00",
+                    "title": "מבנה המחשב - הרצאה",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "08/04/2026",
+                    "start_time": "15:00",
+                    "end_time": "16:00",
+                    "room": "קנדה",
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
+                },
+                {
+                    "session_id": "1773599261.56739382026-04-1210:00",
                     "title": "מבנה המחשב - הרצאה",
                     "lecturer": "לא הוגדר",
                     "date_str": "12/04/2026",
                     "start_time": "10:00",
                     "end_time": "12:00",
                     "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
                 },
                 {
-                    "session_id": "1773594697.60729242026-04-1213:00",
+                    "session_id": "1773600720.8373582026-04-1210:00",
                     "title": "מבנה המחשב - מעבדה",
                     "lecturer": "לא הוגדר",
                     "date_str": "12/04/2026",
-                    "start_time": "13:00",
-                    "end_time": "18:00",
-                    "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
-                },
-                {
-                    "session_id": "1773594697.60709862026-04-1410:00",
-                    "title": "מבנה המחשב - תרגול",
-                    "lecturer": "לא הוגדר",
-                    "date_str": "14/04/2026",
                     "start_time": "10:00",
                     "end_time": "12:00",
-                    "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
+                    "room": "",
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
                 },
                 {
-                    "session_id": "1773594697.60720062026-04-1910:00",
+                    "session_id": "1773600735.3362692026-04-1514:00",
+                    "title": "מבנה המחשב - מעבדה",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "15/04/2026",
+                    "start_time": "14:00",
+                    "end_time": "17:00",
+                    "room": "",
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
+                },
+                {
+                    "session_id": "1773599261.56746632026-04-1515:00",
+                    "title": "מבנה המחשב - הרצאה",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "15/04/2026",
+                    "start_time": "15:00",
+                    "end_time": "16:00",
+                    "room": "קנדה",
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
+                },
+                {
+                    "session_id": "1773599261.5674022026-04-1910:00",
                     "title": "מבנה המחשב - הרצאה",
                     "lecturer": "לא הוגדר",
                     "date_str": "19/04/2026",
                     "start_time": "10:00",
                     "end_time": "12:00",
                     "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
                 },
                 {
-                    "session_id": "1773594697.6072992026-04-1913:00",
+                    "session_id": "1773600720.83736592026-04-1910:00",
                     "title": "מבנה המחשב - מעבדה",
                     "lecturer": "לא הוגדר",
                     "date_str": "19/04/2026",
-                    "start_time": "13:00",
-                    "end_time": "18:00",
-                    "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
-                },
-                {
-                    "session_id": "1773594697.6071072026-04-2110:00",
-                    "title": "מבנה המחשב - תרגול",
-                    "lecturer": "לא הוגדר",
-                    "date_str": "21/04/2026",
                     "start_time": "10:00",
                     "end_time": "12:00",
-                    "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
+                    "room": "",
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
                 },
                 {
-                    "session_id": "1773594697.60720782026-04-2610:00",
+                    "session_id": "1773600735.3362772026-04-2214:00",
+                    "title": "מבנה המחשב - מעבדה",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "22/04/2026",
+                    "start_time": "14:00",
+                    "end_time": "17:00",
+                    "room": "",
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
+                },
+                {
+                    "session_id": "1773599261.56747362026-04-2215:00",
+                    "title": "מבנה המחשב - הרצאה",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "22/04/2026",
+                    "start_time": "15:00",
+                    "end_time": "16:00",
+                    "room": "קנדה",
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
+                },
+                {
+                    "session_id": "1773599261.56741022026-04-2610:00",
                     "title": "מבנה המחשב - הרצאה",
                     "lecturer": "לא הוגדר",
                     "date_str": "26/04/2026",
                     "start_time": "10:00",
                     "end_time": "12:00",
                     "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
                 },
                 {
-                    "session_id": "1773594697.60730582026-04-2613:00",
+                    "session_id": "1773600720.83737332026-04-2610:00",
                     "title": "מבנה המחשב - מעבדה",
                     "lecturer": "לא הוגדר",
                     "date_str": "26/04/2026",
-                    "start_time": "13:00",
-                    "end_time": "18:00",
-                    "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
-                },
-                {
-                    "session_id": "1773594697.6071152026-04-2810:00",
-                    "title": "מבנה המחשב - תרגול",
-                    "lecturer": "לא הוגדר",
-                    "date_str": "28/04/2026",
                     "start_time": "10:00",
                     "end_time": "12:00",
-                    "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
+                    "room": "",
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
                 },
                 {
-                    "session_id": "1773594697.60721472026-05-0310:00",
-                    "title": "מבנה המחשב - הרצאה",
-                    "lecturer": "לא הוגדר",
-                    "date_str": "03/05/2026",
-                    "start_time": "10:00",
-                    "end_time": "12:00",
-                    "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
-                },
-                {
-                    "session_id": "1773594697.60731272026-05-0313:00",
+                    "session_id": "1773600735.33628462026-04-2914:00",
                     "title": "מבנה המחשב - מעבדה",
                     "lecturer": "לא הוגדר",
-                    "date_str": "03/05/2026",
-                    "start_time": "13:00",
-                    "end_time": "18:00",
-                    "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
+                    "date_str": "29/04/2026",
+                    "start_time": "14:00",
+                    "end_time": "17:00",
+                    "room": "",
+                    "status": "status.needs_watching",
+                    "course_color": "#D1C4E9"
                 },
                 {
-                    "session_id": "1773594697.60712272026-05-0510:00",
-                    "title": "מבנה המחשב - תרגול",
-                    "lecturer": "לא הוגדר",
-                    "date_str": "05/05/2026",
-                    "start_time": "10:00",
-                    "end_time": "12:00",
-                    "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
-                },
-                {
-                    "session_id": "1773594697.60722162026-05-1010:00",
+                    "session_id": "1773599261.56748132026-04-2915:00",
                     "title": "מבנה המחשב - הרצאה",
                     "lecturer": "לא הוגדר",
-                    "date_str": "10/05/2026",
-                    "start_time": "10:00",
-                    "end_time": "12:00",
+                    "date_str": "29/04/2026",
+                    "start_time": "15:00",
+                    "end_time": "16:00",
                     "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
+                    "status": "status.cancelled",
+                    "course_color": "#D1C4E9"
+                }
+            ]
+        },
+        {
+            "course_id": "1773600678.7848074",
+            "title": "מבנה המחשב ",
+            "lecturer": "",
+            "course_code": "67200",
+            "link": "",
+            "color": "#F0F4C3",
+            "meetings": [
+                {
+                    "day_name": "days.sunday",
+                    "start_time": "17:30",
+                    "end_time": "22:00",
+                    "location": "קנדה",
+                    "meeting_type": "meeting_types.lecture"
+                }
+            ],
+            "lectures": [
+                {
+                    "session_id": "1773600678.78485012026-03-0817:30",
+                    "title": "מבנה המחשב  - הרצאה",
+                    "lecturer": "",
+                    "date_str": "08/03/2026",
+                    "start_time": "17:30",
+                    "end_time": "22:00",
+                    "room": "קנדה",
+                    "status": "status.watched",
+                    "course_color": "#F0F4C3"
                 },
                 {
-                    "session_id": "1773594697.60731962026-05-1013:00",
-                    "title": "מבנה המחשב - מעבדה",
-                    "lecturer": "לא הוגדר",
-                    "date_str": "10/05/2026",
-                    "start_time": "13:00",
+                    "session_id": "1773600678.7848752026-03-1517:30",
+                    "title": "מבנה המחשב  - הרצאה",
+                    "lecturer": "",
+                    "date_str": "15/03/2026",
+                    "start_time": "17:30",
+                    "end_time": "22:00",
+                    "room": "קנדה",
+                    "status": "status.cancelled",
+                    "course_color": "#F0F4C3"
+                },
+                {
+                    "session_id": "1773600678.78488852026-03-2217:30",
+                    "title": "מבנה המחשב  - הרצאה",
+                    "lecturer": "",
+                    "date_str": "22/03/2026",
+                    "start_time": "17:30",
+                    "end_time": "22:00",
+                    "room": "קנדה",
+                    "status": "status.needs_watching",
+                    "course_color": "#F0F4C3"
+                },
+                {
+                    "session_id": "1773600678.78489852026-03-2917:30",
+                    "title": "מבנה המחשב  - הרצאה",
+                    "lecturer": "",
+                    "date_str": "29/03/2026",
+                    "start_time": "17:30",
+                    "end_time": "22:00",
+                    "room": "קנדה",
+                    "status": "status.needs_watching",
+                    "course_color": "#F0F4C3"
+                },
+                {
+                    "session_id": "1773600678.7849082026-04-0517:30",
+                    "title": "מבנה המחשב  - הרצאה",
+                    "lecturer": "",
+                    "date_str": "05/04/2026",
+                    "start_time": "17:30",
+                    "end_time": "22:00",
+                    "room": "קנדה",
+                    "status": "status.needs_watching",
+                    "course_color": "#F0F4C3"
+                },
+                {
+                    "session_id": "1773600678.78491662026-04-1217:30",
+                    "title": "מבנה המחשב  - הרצאה",
+                    "lecturer": "",
+                    "date_str": "12/04/2026",
+                    "start_time": "17:30",
+                    "end_time": "22:00",
+                    "room": "קנדה",
+                    "status": "status.needs_watching",
+                    "course_color": "#F0F4C3"
+                },
+                {
+                    "session_id": "1773600678.78492552026-04-1917:30",
+                    "title": "מבנה המחשב  - הרצאה",
+                    "lecturer": "",
+                    "date_str": "19/04/2026",
+                    "start_time": "17:30",
+                    "end_time": "22:00",
+                    "room": "קנדה",
+                    "status": "status.needs_watching",
+                    "course_color": "#F0F4C3"
+                },
+                {
+                    "session_id": "1773600678.78493332026-04-2617:30",
+                    "title": "מבנה המחשב  - הרצאה",
+                    "lecturer": "",
+                    "date_str": "26/04/2026",
+                    "start_time": "17:30",
+                    "end_time": "22:00",
+                    "room": "קנדה",
+                    "status": "status.needs_watching",
+                    "course_color": "#F0F4C3"
+                }
+            ]
+        },
+        {
+            "course_id": "1773601530.0050502",
+            "title": "אינפי ",
+            "lecturer": "",
+            "course_code": "80177",
+            "link": "",
+            "color": "#F8BBD0",
+            "meetings": [
+                {
+                    "day_name": "days.sunday",
+                    "start_time": "16:30",
+                    "end_time": "18:00",
+                    "location": "קנדה",
+                    "meeting_type": "meeting_types.lab"
+                }
+            ],
+            "lectures": [
+                {
+                    "session_id": "1773601530.005092026-03-0816:30",
+                    "title": "אינפי  - מעבדה",
+                    "lecturer": "",
+                    "date_str": "08/03/2026",
+                    "start_time": "16:30",
                     "end_time": "18:00",
                     "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
+                    "status": "status.skipped",
+                    "course_color": "#F8BBD0"
                 },
                 {
-                    "session_id": "1773594697.60713082026-05-1210:00",
-                    "title": "מבנה המחשב - תרגול",
-                    "lecturer": "לא הוגדר",
-                    "date_str": "12/05/2026",
-                    "start_time": "10:00",
-                    "end_time": "12:00",
-                    "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
-                },
-                {
-                    "session_id": "1773594697.60722852026-05-1710:00",
-                    "title": "מבנה המחשב - הרצאה",
-                    "lecturer": "לא הוגדר",
-                    "date_str": "17/05/2026",
-                    "start_time": "10:00",
-                    "end_time": "12:00",
-                    "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
-                },
-                {
-                    "session_id": "1773594697.60732632026-05-1713:00",
-                    "title": "מבנה המחשב - מעבדה",
-                    "lecturer": "לא הוגדר",
-                    "date_str": "17/05/2026",
-                    "start_time": "13:00",
+                    "session_id": "1773601530.00511482026-03-1516:30",
+                    "title": "אינפי  - מעבדה",
+                    "lecturer": "",
+                    "date_str": "15/03/2026",
+                    "start_time": "16:30",
                     "end_time": "18:00",
                     "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
+                    "status": "status.watched",
+                    "course_color": "#F8BBD0"
                 },
                 {
-                    "session_id": "1773594697.60713862026-05-1910:00",
-                    "title": "מבנה המחשב - תרגול",
-                    "lecturer": "לא הוגדר",
-                    "date_str": "19/05/2026",
-                    "start_time": "10:00",
-                    "end_time": "12:00",
-                    "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
-                },
-                {
-                    "session_id": "1773594697.60723542026-05-2410:00",
-                    "title": "מבנה המחשב - הרצאה",
-                    "lecturer": "לא הוגדר",
-                    "date_str": "24/05/2026",
-                    "start_time": "10:00",
-                    "end_time": "12:00",
-                    "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
-                },
-                {
-                    "session_id": "1773594697.6073332026-05-2413:00",
-                    "title": "מבנה המחשב - מעבדה",
-                    "lecturer": "לא הוגדר",
-                    "date_str": "24/05/2026",
-                    "start_time": "13:00",
+                    "session_id": "1773601530.00512842026-03-2216:30",
+                    "title": "אינפי  - מעבדה",
+                    "lecturer": "",
+                    "date_str": "22/03/2026",
+                    "start_time": "16:30",
                     "end_time": "18:00",
                     "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
+                    "status": "status.attended",
+                    "course_color": "#F8BBD0"
                 },
                 {
-                    "session_id": "1773594697.60714632026-05-2610:00",
-                    "title": "מבנה המחשב - תרגול",
-                    "lecturer": "לא הוגדר",
-                    "date_str": "26/05/2026",
-                    "start_time": "10:00",
-                    "end_time": "12:00",
+                    "session_id": "1773601530.00513772026-03-2916:30",
+                    "title": "אינפי  - מעבדה",
+                    "lecturer": "",
+                    "date_str": "29/03/2026",
+                    "start_time": "16:30",
+                    "end_time": "18:00",
                     "room": "קנדה",
-                    "status": "צריך לראות את ההקלטה",
-                    "course_color": "#FFECB3"
+                    "status": "status.needs_watching",
+                    "course_color": "#F8BBD0"
+                },
+                {
+                    "session_id": "1773601530.00514632026-04-0516:30",
+                    "title": "אינפי  - מעבדה",
+                    "lecturer": "",
+                    "date_str": "05/04/2026",
+                    "start_time": "16:30",
+                    "end_time": "18:00",
+                    "room": "קנדה",
+                    "status": "status.needs_watching",
+                    "course_color": "#F8BBD0"
+                },
+                {
+                    "session_id": "1773601530.00515462026-04-1216:30",
+                    "title": "אינפי  - מעבדה",
+                    "lecturer": "",
+                    "date_str": "12/04/2026",
+                    "start_time": "16:30",
+                    "end_time": "18:00",
+                    "room": "קנדה",
+                    "status": "status.needs_watching",
+                    "course_color": "#F8BBD0"
+                },
+                {
+                    "session_id": "1773601530.00516272026-04-1916:30",
+                    "title": "אינפי  - מעבדה",
+                    "lecturer": "",
+                    "date_str": "19/04/2026",
+                    "start_time": "16:30",
+                    "end_time": "18:00",
+                    "room": "קנדה",
+                    "status": "status.needs_watching",
+                    "course_color": "#F8BBD0"
+                },
+                {
+                    "session_id": "1773601530.00517032026-04-2616:30",
+                    "title": "אינפי  - מעבדה",
+                    "lecturer": "",
+                    "date_str": "26/04/2026",
+                    "start_time": "16:30",
+                    "end_time": "18:00",
+                    "room": "קנדה",
+                    "status": "status.needs_watching",
+                    "course_color": "#F8BBD0"
                 }
             ]
         }

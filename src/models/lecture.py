@@ -1,11 +1,11 @@
 import datetime
 
 class LectureStatus:
-    ATTENDED = "הלכתי לראות"
-    WATCHED_RECORDING = "ראיתי את ההקלטה"
-    NEEDS_WATCHING = "צריך לראות את ההקלטה"
-    SKIPPED = "לדלג / אין צורך"
-    CANCELLED = "בוטלה"
+    ATTENDED = "status.attended"
+    WATCHED_RECORDING = "status.watched"
+    NEEDS_WATCHING = "status.needs_watching"
+    SKIPPED = "status.skipped"
+    CANCELLED = "status.cancelled"
 
 class LectureSession:
     def __init__(self, session_id, title, lecturer, date_obj, start_time, end_time, room, status=LectureStatus.NEEDS_WATCHING):
@@ -38,6 +38,17 @@ class LectureSession:
 
     @classmethod
     def from_dict(cls, data):
+        # מנגנון תאימות לאחור (Backward Compatibility)
+        old_status_map = {
+            "הלכתי לראות": LectureStatus.ATTENDED,
+            "ראיתי את ההקלטה": LectureStatus.WATCHED_RECORDING,
+            "צריך לראות את ההקלטה": LectureStatus.NEEDS_WATCHING,
+            "לדלג / אין צורך": LectureStatus.SKIPPED,
+            "בוטלה": LectureStatus.CANCELLED
+        }
+        loaded_status = data.get("status", LectureStatus.NEEDS_WATCHING)
+        loaded_status = old_status_map.get(loaded_status, loaded_status)
+
         date_obj = datetime.datetime.strptime(data["date_str"], "%d/%m/%Y").date()
         lec = cls(
             session_id=data["session_id"],
@@ -47,7 +58,7 @@ class LectureSession:
             start_time=data["start_time"],
             end_time=data["end_time"],
             room=data["room"],
-            status=data.get("status", LectureStatus.NEEDS_WATCHING)
+            status=loaded_status
         )
         lec.course_color = data.get("course_color", "#E3F2FD")
         return lec

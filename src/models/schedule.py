@@ -12,6 +12,7 @@ class SemesterSchedule:
         self.notify_before_mins = 15
         self.notify_after_mins = 15
         self.show_weekend = False
+        self.language = "he"
         self.filepath = "my_schedule_data.json"
 
     def save_to_file(self):
@@ -21,6 +22,7 @@ class SemesterSchedule:
             "notify_before_mins": self.notify_before_mins,
             "notify_after_mins": self.notify_after_mins,
             "show_weekend": self.show_weekend,
+            "language": self.language,
             "courses": [c.to_dict() for c in self.courses]
         }
         try:
@@ -43,6 +45,7 @@ class SemesterSchedule:
             self.notify_before_mins = data.get("notify_before_mins", 15)
             self.notify_after_mins = data.get("notify_after_mins", 15)
             self.show_weekend = data.get("show_weekend", False)
+            self.language = data.get("language", "he")
 
             self.courses = []
             for c_data in data.get("courses", []):
@@ -77,8 +80,7 @@ class SemesterSchedule:
         return sorted(all_lecs, key=lambda l: (l.date_obj, l.start_time))
 
     def get_weekly_lectures(self, target_date=None):
-        if target_date is None:
-            target_date = datetime.now().date()
+        if target_date is None: target_date = datetime.now().date()
         idx = (target_date.weekday() + 1) % 7 
         sun = target_date - timedelta(days=idx)
         sat = sun + timedelta(days=6)

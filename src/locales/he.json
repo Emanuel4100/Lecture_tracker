@@ -1,10 +1,84 @@
 {
-    "plurals": {
-        "הרצאה": "הרצאות",
-        "תרגול": "תרגולים",
-        "מעבדה": "מעבדות"
+    "common": {
+        "back": "חזור",
+        "save": "שמור",
+        "add": "הוסף",
+        "next": "הבא",
+        "prev": "קודם",
+        "error": "שגיאה!",
+        "success": "בהצלחה!",
+        "not_set": "לא הוגדר",
+        "not_selected": "לא נבחר",
+        "cancel": "ביטול"
     },
-    "course": {
-        "new_course": "קורס חדש"
+    "days": {
+        "sunday": "ראשון", "monday": "שני", "tuesday": "שלישי",
+        "wednesday": "רביעי", "thursday": "חמישי", "friday": "שישי", "saturday": "שבת"
+    },
+    "status": {
+        "attended": "הלכתי לראות", "watched": "ראיתי את ההקלטה", "needs_watching": "צריך לראות את ההקלטה",
+        "skipped": "לדלג / אין צורך", "cancelled": "בוטלה",
+        "attended_short": "הלכתי", "watched_short": "הקלטה", "needs_watching_short": "להשלים",
+        "skipped_short": "דילגתי", "cancelled_short": "בוטלה"
+    },
+    "meeting_types": {
+        "lecture": "הרצאה", "practice": "תרגול", "lab": "מעבדה"
+    },
+    "plurals": {
+        "lecture": "הרצאות", "practice": "תרגולים", "lab": "מעבדות"
+    },
+    "duration": {
+        "h1": "שעה", "h2": "שעתיים", "h_many": "{h} שעות",
+        "m": "{m} דקות", "and_m": "ו-{m} דקות"
+    },
+    "onboarding": {
+        "title": "הגדרת סמסטר חדש", "welcome": "ברוך הבא למעקב ההרצאות!", "create_semester": "צור סמסטר חדש",
+        "step1_title": "שלב 1: תאריכי הסמסטר", "choose_start": "בחר התחלה", "choose_end": "בחר סיום",
+        "next_step": "המשך לשלב הבא", "dates_error": "חובה לבחור תאריכים!",
+        "step2_title": "שלב 2: הוספת קורסים (אופציונלי)",
+        "step3_title": "שלב 3: התראות", "notify_before": "התראה לפני (דקות)", "continue": "המשך",
+        "step4_title": "שלב 4: בוא נתחיל!", "finish_go": "סיום - למערכת השעות!"
+    },
+    "course_form": {
+        "title_add": "הוספת קורס חדש", "details": "פרטי הקורס:", "name": "שם הקורס", "name_hint": "למשל: אלגברה",
+        "code": "קוד קורס", "code_hint": "אופציונלי", "lecturer": "שם המרצה",
+        "location": "מיקום", "location_hint": "חדר/אולם", "type": "סוג", "day": "יום",
+        "start": "התחלה", "end": "סיום", "add_times": "הוסף זמני מערכת:", "add_time_btn": "הוסף זמנים",
+        "save_btn": "שמור קורס וייצר הכל לסמסטר", "save_temp_btn": "שמור קורס זה לסמסטר",
+        "time_error": "שגיאה! שעת סיום חייבת להיות אחרי התחלה.",
+        "missing_info": "שגיאה! חובה להזין שם קורס ולפחות מועד אחד.",
+        "success_msg": "הקורס '{title}' נוסף בהצלחה!", "new_course_def": "קורס חדש",
+        "add_lecturer": "הוסף שם מרצה",
+        "add_link": "הוסף קישור (Zoom/Drive)",
+        "link": "קישור",
+        "link_hint": "https://..."
+    },
+    "schedule": {
+        "app_title": "מעקב הרצאות", "tab_weekly": "לוח שבועי", "tab_missing": "השלמות",
+        "tab_lectures": "הרצאות",
+        "tab_past": "הרצאות שעברו", "tab_future": "הרצאות עתידיות", "tab_stats": "סטטיסטיקה",
+        "settings": "הגדרות", "week_of": "שבוע מתאריך: {date}", "end_of_sem": "סיום",
+        "overlap": "חפיפה!", "no_lectures": "אין הרצאות להצגה"
+    },
+    "settings": {
+        "title": "הגדרות", "dates": "תאריכי הסמסטר:", "display": "הגדרות תצוגה:",
+        "show_weekend": "הצג סופ״ש בלוח השבועי (שישי-שבת)",
+        "language": "שפת ממשק (Language)", "save_success": "ההגדרות נשמרו בהצלחה!"
+    },
+    "stats": {
+        "no_data": "אין נתונים להציג כרגע 📊", "title": "התקדמות הסמסטר שלך",
+        "total_lectures": "סה״כ {total} הרצאות הוגדרו במערכת", "attended": "ראיתי / נכחתי ({count})",
+        "skipped": "דילגתי ({count})", "needs_watching": "טרם נצפה / עתידי ({count})", "cancelled": "בוטלה ({count})"
+    },
+    "schedule_menu": {
+        "add_options": "מה תרצה להוסיף?",
+        "add_course": "הוסף קורס חדש",
+        "add_meeting": "הוסף מפגש לקורס קיים"
+    },
+    "add_meeting": {
+        "title": "הוספת מפגש חדש",
+        "select_course": "בחר קורס",
+        "no_courses": "אין קורסים במערכת",
+        "success_msg": "המפגש נוסף בהצלחה לקורס '{title}'!"
     }
 }

@@ -1,0 +1,77 @@
+{
+    "common": {
+        "back": "Back", "save": "Save", "add": "Add", "next": "Next", "prev": "Prev",
+        "error": "Error!", "success": "Success!", "not_set": "Not Set", "not_selected": "Not Selected",
+        "cancel": "Cancel"
+    },
+    "days": {
+        "sunday": "Sunday", "monday": "Monday", "tuesday": "Tuesday",
+        "wednesday": "Wednesday", "thursday": "Thursday", "friday": "Friday", "saturday": "Saturday"
+    },
+    "status": {
+        "attended": "Attended", "watched": "Watched Recording", "needs_watching": "Needs Watching",
+        "skipped": "Skipped", "cancelled": "Cancelled",
+        "attended_short": "Attended", "watched_short": "Watched", "needs_watching_short": "Pending",
+        "skipped_short": "Skipped", "cancelled_short": "Cancelled"
+    },
+    "meeting_types": {
+        "lecture": "Lecture", "practice": "Practice", "lab": "Lab"
+    },
+    "plurals": {
+        "lecture": "Lectures", "practice": "Practices", "lab": "Labs"
+    },
+    "duration": {
+        "h1": "1 hour", "h2": "2 hours", "h_many": "{h} hours",
+        "m": "{m} mins", "and_m": "and {m} mins"
+    },
+    "onboarding": {
+        "title": "New Semester Setup", "welcome": "Welcome to Lecture Tracker!", "create_semester": "Create New Semester",
+        "step1_title": "Step 1: Semester Dates", "choose_start": "Select Start", "choose_end": "Select End",
+        "next_step": "Continue to Next Step", "dates_error": "You must select dates!",
+        "step2_title": "Step 2: Add Courses (Optional)",
+        "step3_title": "Step 3: Notifications", "notify_before": "Notify Before (mins)", "continue": "Continue",
+        "step4_title": "Step 4: Let's Start!", "finish_go": "Finish - Go to Schedule!"
+    },
+    "course_form": {
+        "title_add": "Add New Course", "details": "Course Details:", "name": "Course Name", "name_hint": "e.g., Algebra",
+        "code": "Course Code", "code_hint": "Optional", "lecturer": "Lecturer Name",
+        "location": "Location", "location_hint": "Room/Hall", "type": "Type", "day": "Day",
+        "start": "Start", "end": "End", "add_times": "Add Schedule Times:", "add_time_btn": "Add Time",
+        "save_btn": "Save Course & Generate Schedule", "save_temp_btn": "Save Course to Semester",
+        "time_error": "Error! End time must be after start time.",
+        "missing_info": "Error! You must enter a course name and at least one meeting time.",
+        "success_msg": "Course '{title}' added successfully!", "new_course_def": "New Course",
+        "add_lecturer": "Add Lecturer",
+        "add_link": "Add Link (Zoom/Drive)",
+        "link": "Link",
+        "link_hint": "https://..."
+    },
+    "schedule": {
+        "app_title": "Lecture Tracker", "tab_weekly": "Weekly Board",
+        "tab_lectures": "Lectures", "tab_missing": "Pending",
+        "tab_past": "Past Lectures", "tab_future": "Future Lectures", "tab_stats": "Statistics",
+        "settings": "Settings", "week_of": "Week of: {date}", "end_of_sem": "End",
+        "overlap": "Overlap!", "no_lectures": "No lectures to display"
+    },
+    "settings": {
+        "title": "Settings", "dates": "Semester Dates:", "display": "Display Settings:",
+        "show_weekend": "Show Weekend on Weekly Board",
+        "language": "Language (שפת ממשק)", "save_success": "Settings saved successfully!"
+    },
+    "stats": {
+        "no_data": "No data to display 📊", "title": "Your Semester Progress",
+        "total_lectures": "Total {total} lectures defined", "attended": "Attended/Watched ({count})",
+        "skipped": "Skipped ({count})", "needs_watching": "Pending/Future ({count})", "cancelled": "Cancelled ({count})"
+    },
+    "schedule_menu": {
+        "add_options": "What would you like to add?",
+        "add_course": "Add New Course",
+        "add_meeting": "Add Meeting to Course"
+    },
+    "add_meeting": {
+        "title": "Add New Meeting",
+        "select_course": "Select Course",
+        "no_courses": "No courses available",
+        "success_msg": "Meeting successfully added to '{title}'!"
+    }
+}
