@@ -31,4 +31,4 @@ def main(page: ft.Page):
     change_screen("schedule")
 
 if __name__ == "__main__":
-    ft.run(main, port=8550, host="0.0.0.0")
+    ft.app(target=main)
