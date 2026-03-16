@@ -1,7 +1,9 @@
 import flet as ft
 from datetime import datetime, timedelta
+import time
 from components.lecture_card import LectureCard
 from components.statistics_panel import StatisticsPanel
+from models.lecture import LectureSession, LectureStatus
 from utils.i18n import t
 
 class ScheduleView(ft.Column):
@@ -12,26 +14,22 @@ class ScheduleView(ft.Column):
         self.change_screen = change_screen_func
 
         self.is_narrow_screen = self.app_page.width < 1100
-        # בדיקה האם רצים על אנדרואיד/iOS
         self.is_native_mobile = self.app_page.platform in [ft.PagePlatform.IOS, ft.PagePlatform.ANDROID]
         
         self.tabs = self.get_tabs()
         self.selected_tab = self.tabs[0]
         self.current_week_offset = 0
         self.selected_lecture_filter = t("schedule.tab_missing")
+        self.current_sort_method = "date" # Default sort method
         
         self.app_page.on_resize = self.handle_resize
 
         self.tabs_row = ft.Row(scroll=ft.ScrollMode.AUTO, alignment="center")
         
-        # תפריט תחתון מותאם אישית לחלוטין (מונע בעיות גרסאות ובעיות טעינת אייקונים)
         self.bottom_nav_row = ft.Row(alignment=ft.MainAxisAlignment.SPACE_AROUND)
         self.bottom_nav = ft.Container(
-            content=self.bottom_nav_row,
-            visible=self.is_native_mobile, # מופיע רק במובייל אמיתי!
-            bgcolor="surface",
-            border=ft.border.only(top=ft.border.BorderSide(1, "outlineVariant")),
-            padding=ft.padding.only(top=10, bottom=20) # שוליים לתחתית המסך
+            content=self.bottom_nav_row, visible=self.is_native_mobile, bgcolor="surface",
+            border=ft.border.only(top=ft.border.BorderSide(1, "outlineVariant")), padding=ft.padding.only(top=10, bottom=20) 
         )
 
         self.content_area = ft.Container(expand=True)
@@ -41,10 +39,7 @@ class ScheduleView(ft.Column):
 
         header = ft.Container(
             content=ft.Row([
-                ft.Container(
-                    content=ft.Image(src="icons/settings.svg", width=24, height=24, color="onPrimary"), 
-                    tooltip=t("schedule.settings"), padding=10, on_click=lambda _: self.change_screen("settings")
-                ),
+                ft.Container(content=ft.Image(src="icons/settings.svg", width=24, height=24, color="onPrimary"), tooltip=t("schedule.settings"), padding=10, on_click=lambda _: self.change_screen("settings")),
                 ft.Text(t("schedule.app_title"), size=22, weight="bold", color="onPrimary"),
                 ft.Container(width=48)
             ], alignment=ft.MainAxisAlignment.SPACE_BETWEEN),
@@ -54,16 +49,12 @@ class ScheduleView(ft.Column):
         add_btn = ft.FloatingActionButton(content=ft.Image(src="icons/add.svg", width=24, height=24, color="onPrimaryContainer"), bgcolor="primaryContainer", shape=ft.RoundedRectangleBorder(radius=16), on_click=self.open_add_menu)
         
         top_controls = [header]
-        # אם זה לא מובייל, נציג את הלשוניות העליונות הרגילות
         if not self.is_native_mobile:
             top_controls.append(self.tabs_row)
             
         self.controls = [
             ft.Column(top_controls),
-            ft.Stack([
-                self.content_area,
-                ft.Container(content=add_btn, alignment=ft.Alignment(-0.9, 0.9)) 
-            ], expand=True),
+            ft.Stack([self.content_area, ft.Container(content=add_btn, bottom=20, left=20)], expand=True),
             self.bottom_nav
         ]
 
@@ -82,22 +73,81 @@ class ScheduleView(ft.Column):
     def open_add_menu(self, e):
         def close_and_go(screen_name):
             bs.open = False; self.app_page.update(); self.change_screen(screen_name)
+            
+        def close_and_open_oneoff():
+            bs.open = False; self.app_page.update(); self.open_oneoff_event_dialog()
 
-        bs = ft.BottomSheet(
-            ft.Container(
-                padding=20, bgcolor="surface",
-                content=ft.Column([
-                    ft.Text(t("schedule_menu.add_options"), size=18, weight="bold", color="onSurface"),
-                    ft.Divider(color="outlineVariant"),
-                    ft.ListTile(leading=ft.Image(src="icons/menu_book.svg", width=24, height=24, color="primary"), title=ft.Text(t("schedule_menu.add_course"), color="onSurface"), on_click=lambda _: close_and_go("add")),
-                    ft.ListTile(leading=ft.Image(src="icons/schedule.svg", width=24, height=24, color="tertiary"), title=ft.Text(t("schedule_menu.add_meeting"), color="onSurface"), on_click=lambda _: close_and_go("add_meeting"))
-                ], tight=True)
-            )
-        )
+        # Contextual FAB logic
+        if self.selected_tab == t("schedule.tab_lectures"):
+            options_content = ft.Column([
+                ft.Text("Add Task / One-off Event", size=18, weight="bold", color="onSurface"),
+                ft.Divider(color="outlineVariant"),
+                ft.ListTile(leading=ft.Icon(ft.Icons.VIDEO_CAMERA_FRONT, color="primary"), title=ft.Text("Add Recording Task", color="onSurface"), on_click=lambda _: close_and_open_oneoff()),
+                ft.ListTile(leading=ft.Icon(ft.Icons.EVENT, color="tertiary"), title=ft.Text("Add Custom Event", color="onSurface"), on_click=lambda _: close_and_open_oneoff()),
+            ], tight=True)
+        else:
+            options_content = ft.Column([
+                ft.Text(t("schedule_menu.add_options"), size=18, weight="bold", color="onSurface"),
+                ft.Divider(color="outlineVariant"),
+                ft.ListTile(leading=ft.Image(src="icons/menu_book.svg", width=24, height=24, color="primary"), title=ft.Text(t("schedule_menu.add_course"), color="onSurface"), on_click=lambda _: close_and_go("add")),
+                ft.ListTile(leading=ft.Image(src="icons/schedule.svg", width=24, height=24, color="tertiary"), title=ft.Text(t("schedule_menu.add_meeting"), color="onSurface"), on_click=lambda _: close_and_go("add_meeting"))
+            ], tight=True)
+
+        bs = ft.BottomSheet(ft.Container(padding=20, bgcolor="surface", content=options_content))
         self.app_page.overlay.append(bs); bs.open = True; self.app_page.update()
 
+    def open_oneoff_event_dialog(self):
+        course_options = [ft.dropdown.Option(key=c.course_id, text=c.title) for c in self.schedule.courses]
+        course_dropdown = ft.Dropdown(label="Select Course", options=course_options, width=280)
+        title_input = ft.TextField(label="Topic / Title", width=280)
+        duration_input = ft.TextField(label="Duration (mins)", keyboard_type=ft.KeyboardType.NUMBER, width=120)
+        
+        type_dropdown = ft.Dropdown(label="Type", width=150, options=[
+            ft.dropdown.Option("meeting_types.lecture", t("meeting_types.lecture")),
+            ft.dropdown.Option("meeting_types.practice", t("meeting_types.practice")),
+            ft.dropdown.Option("meeting_types.lab", t("meeting_types.lab")),
+            ft.dropdown.Option("meeting_types.recording", "הקלטה/Recording"),
+            ft.dropdown.Option("meeting_types.other", "אחר/Other")
+        ], value="meeting_types.other")
+        
+        def save_oneoff(e):
+            if not course_dropdown.value or not title_input.value:
+                return
+            course = next((c for c in self.schedule.courses if c.course_id == course_dropdown.value), None)
+            if course:
+                session_id = str(time.time())
+                dur = int(duration_input.value) if duration_input.value.isdigit() else 60
+                
+                lec = LectureSession(
+                    session_id=session_id,
+                    title=f"{course.title} - {title_input.value}",
+                    lecturer=course.lecturer,
+                    date_obj=datetime.now().date(),
+                    duration_mins=dur,
+                    is_one_off=True,
+                    meeting_type=type_dropdown.value,
+                    status=LectureStatus.NEEDS_WATCHING
+                )
+                lec.course_color = course.color
+                course.lectures.append(lec)
+                self.schedule.save_to_file()
+                self.refresh_ui()
+                dlg.open = False
+                self.app_page.update()
+
+        dlg = ft.AlertDialog(
+            title=ft.Text("Add Custom Task"),
+            content=ft.Column([course_dropdown, title_input, ft.Row([duration_input, type_dropdown])], tight=True),
+            actions=[
+                ft.TextButton("Cancel", on_click=lambda _: setattr(dlg, 'open', False) or self.app_page.update()),
+                ft.ElevatedButton("Save", on_click=save_oneoff, bgcolor="primary", color="onPrimary")
+            ]
+        )
+        self.app_page.overlay.append(dlg)
+        dlg.open = True
+        self.app_page.update()
+
     def build_tabs(self):
-        # 1. בניית הלשוניות העליונות (למחשב)
         self.tabs_row.controls.clear()
         for tab in self.tabs:
             is_selected = (tab == self.selected_tab)
@@ -108,26 +158,17 @@ class ScheduleView(ft.Column):
             )
             self.tabs_row.controls.append(btn)
 
-        # 2. בניית התפריט התחתון (למובייל)
         self.bottom_nav_row.controls.clear()
-        nav_items = [
-            ("calendar_month", t("schedule.tab_weekly")),
-            ("menu_book", t("schedule.tab_lectures")),
-            ("pie_chart", t("schedule.tab_stats")) # האייקון החדש שהורדת!
-        ]
+        nav_items = [("calendar_month", t("schedule.tab_weekly")), ("menu_book", t("schedule.tab_lectures")), ("pie_chart", t("schedule.tab_stats"))]
         for icon_name, tab_name in nav_items:
             is_selected = (self.selected_tab == tab_name)
             color = "primary" if is_selected else "onSurfaceVariant"
-            
             nav_btn = ft.Container(
                 content=ft.Column([
                     ft.Image(src=f"icons/{icon_name}.svg", width=24, height=24, color=color),
                     ft.Text(tab_name, size=11, color=color, weight="bold" if is_selected else "normal")
                 ], spacing=4, alignment=ft.MainAxisAlignment.CENTER, horizontal_alignment=ft.CrossAxisAlignment.CENTER),
-                expand=True,
-                ink=True,
-                padding=ft.padding.symmetric(vertical=8),
-                border_radius=10,
+                expand=True, ink=True, padding=ft.padding.symmetric(vertical=8), border_radius=10,
                 on_click=self.create_tab_click_handler(tab_name)
             )
             self.bottom_nav_row.controls.append(nav_btn)
@@ -212,6 +253,11 @@ class ScheduleView(ft.Column):
 
     def change_lecture_filter(self, filter_name):
         self.selected_lecture_filter = filter_name; self.update_content(); self.update()
+        
+    def change_sort_method(self, e):
+        self.current_sort_method = e.control.value
+        self.update_content()
+        self.update()
 
     def build_lectures_tab(self):
         filters = [t("schedule.tab_missing"), t("schedule.tab_future"), t("schedule.tab_past")]
@@ -219,16 +265,27 @@ class ScheduleView(ft.Column):
         
         for f_name in filters:
             is_sel = (f_name == self.selected_lecture_filter)
-            
             btn = ft.Container(
                 content=ft.Text(f_name, color="onSecondaryContainer" if is_sel else "onSurfaceVariant", weight="bold"), 
                 bgcolor="secondaryContainer" if is_sel else "surfaceVariant",
                 padding=ft.padding.symmetric(horizontal=20, vertical=10),
                 border_radius=20,
-                on_click=lambda e, fn=f_name: self.change_lecture_filter(fn),
-                ink=True
+                on_click=lambda e, fn=f_name: self.change_lecture_filter(fn), ink=True
             )
             filter_row.controls.append(btn)
+
+        # Sorting Dropdown
+        sort_dropdown = ft.Dropdown(
+            options=[
+                ft.dropdown.Option("date", "מיון: תאריך"),
+                ft.dropdown.Option("duration", "מיון: אורך"),
+                ft.dropdown.Option("type", "מיון: סוג")
+            ],
+            value=self.current_sort_method, width=150, dense=True,
+            on_change=self.change_sort_method
+        )
+        
+        top_bar = ft.Row([filter_row, sort_dropdown], alignment=ft.MainAxisAlignment.SPACE_BETWEEN)
 
         list_view = ft.ListView(expand=True, padding=20, spacing=10)
         
@@ -236,6 +293,14 @@ class ScheduleView(ft.Column):
         elif self.selected_lecture_filter == t("schedule.tab_past"): lectures = self.schedule.get_past_lectures()
         elif self.selected_lecture_filter == t("schedule.tab_future"): lectures = self.schedule.get_future_lectures()
             
+        # Apply Sorting
+        if self.current_sort_method == "duration":
+            lectures.sort(key=lambda x: x.duration_mins or 0, reverse=True)
+        elif self.current_sort_method == "type":
+            lectures.sort(key=lambda x: str(x.meeting_type))
+        else:
+            lectures.sort(key=lambda x: (x.date_obj, x.start_time))
+
         if not lectures:
             empty_state = ft.Column([
                 ft.Image(src="icons/event_busy.svg", width=60, height=60, color="onSurfaceVariant"), 
@@ -245,7 +310,7 @@ class ScheduleView(ft.Column):
         else:
             for lec in lectures: list_view.controls.append(LectureCard(lec, self.refresh_ui, is_mobile=False, show_date=True))
 
-        return ft.Column([ft.Container(content=filter_row, padding=ft.padding.only(top=10, bottom=5)), list_view], expand=True)
+        return ft.Column([ft.Container(content=top_bar, padding=ft.padding.only(top=10, bottom=5, left=10, right=10)), list_view], expand=True)
 
     def update_content(self):
         main_view = None
@@ -254,21 +319,8 @@ class ScheduleView(ft.Column):
         elif self.selected_tab == t("schedule.tab_lectures"): main_view = self.build_lectures_tab()
 
         if not self.is_narrow_screen and self.selected_tab == t("schedule.tab_lectures"):
-            border_side = ft.border.only(
-                right=ft.border.BorderSide(width=1, color="outlineVariant")
-            ) if self.schedule.language == "he" else ft.border.only(
-                left=ft.border.BorderSide(width=1, color="outlineVariant")
-            )
-            
-            side_panel = ft.Container(
-                content=StatisticsPanel(self.schedule), 
-                width=350, 
-                border=border_side, 
-                padding=10
-            )
-            self.content_area.content = ft.Row([
-                ft.Container(content=main_view, expand=True), 
-                side_panel
-            ], expand=True)
+            border_side = ft.border.only(right=ft.border.BorderSide(width=1, color="outlineVariant")) if self.schedule.language == "he" else ft.border.only(left=ft.border.BorderSide(width=1, color="outlineVariant"))
+            side_panel = ft.Container(content=StatisticsPanel(self.schedule), width=350, border=border_side, padding=10)
+            self.content_area.content = ft.Row([ft.Container(content=main_view, expand=True), side_panel], expand=True)
         else:
             self.content_area.content = main_view

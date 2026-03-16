@@ -1,5 +1,5 @@
 [project]
-name = "lecture-tracker"
+name = "LecCheck"
 version = "0.1.0"
 description = ""
 readme = "README.md"
@@ -19,8 +19,8 @@ dev = [
 ]
 
 [tool.flet]
-org = "com.emanuel.lecturetracker"
-product = "Lecture Tracker"
+org = "com.emanuel.leccheck"
+product = "LecCheck"
 company = "Emanuel"
 copyright = "Copyright (C) 2026"
 

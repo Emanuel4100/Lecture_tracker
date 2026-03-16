@@ -4,12 +4,12 @@ from datetime import timedelta
 from models.lecture import LectureSession, LectureStatus
 from utils.i18n import t
 
-# צבעי משטח עדינים (Surface Variants) שמתאימים לסטנדרט M3
 COURSE_COLORS = [
-    "#F3E5F5", "#E8EAF6", "#E3F2FD", "#E0F7FA", "#E0F2F1",
-    "#E8F5E9", "#F1F8E9", "#F9FBE7", "#FFF3E0", "#FBE9E7",
-    "#EFEBE9", "#FAFAFA", "#ECEFF1", "#FFEBEE", "#FFF8E1"
+    "red100", "pink100", "purple100", "deepPurple100", "indigo100",
+    "blue100", "lightBlue100", "cyan100", "teal100", "green100",
+    "lightGreen100", "lime100", "yellow100", "amber100", "orange100"
 ]
+
 class Course:
     def __init__(self, course_id, title, lecturer="", course_code="", link=""):
         self.course_id = course_id
@@ -30,25 +30,29 @@ class Course:
             "meeting_type": meeting_type
         }
         self.meetings.append(meeting_rule)
-        self._generate_lectures_for_rule(semester_start, semester_end, meeting_rule)
-        self.lectures.sort(key=lambda l: (l.date_obj, l.start_time))
+        self.recalculate_all_lectures(semester_start, semester_end)
 
-    def _generate_lectures_for_rule(self, semester_start, semester_end, rule, preserved_statuses=None):
+    def _generate_lectures_for_rule(self, semester_start, semester_end, rule, preserved_statuses=None, preserved_links=None):
         weekdays = {"days.monday": 0, "days.tuesday": 1, "days.wednesday": 2, "days.thursday": 3, "days.friday": 4, "days.saturday": 5, "days.sunday": 6,
                     "שני": 0, "שלישי": 1, "רביעי": 2, "חמישי": 3, "שישי": 4, "שבת": 5, "ראשון": 6} 
         target_weekday = weekdays.get(rule["day_name"], 6)
 
         current_date = semester_start
-        
         while current_date <= semester_end:
             if current_date.weekday() == target_weekday:
                 date_str = current_date.strftime("%d/%m/%Y")
                 status = LectureStatus.NEEDS_WATCHING
+                ext_link = ""
                 
+                # Restore previous status and links if they existed
                 if preserved_statuses:
                     key = (date_str, rule["start_time"])
                     if key in preserved_statuses:
                         status = preserved_statuses[key]
+                if preserved_links:
+                    key = (date_str, rule["start_time"])
+                    if key in preserved_links:
+                        ext_link = preserved_links[key]
 
                 new_id = str(time.time()) + str(current_date) + rule["start_time"]
                 m_type = rule.get('meeting_type', 'meeting_types.lecture')
@@ -61,20 +65,51 @@ class Course:
                 new_lec = LectureSession(
                     session_id=new_id, title=session_title, lecturer=self.lecturer,
                     date_obj=current_date, start_time=rule["start_time"], end_time=rule["end_time"],
-                    room=rule["location"], status=status
+                    room=rule["location"], status=status, meeting_type=m_type
                 )
                 new_lec.course_color = self.color
+                new_lec.external_link = ext_link
+                
+                # Calculate duration in minutes for standard lectures
+                try:
+                    h1, m1 = map(int, rule["start_time"].split(':'))
+                    h2, m2 = map(int, rule["end_time"].split(':'))
+                    new_lec.duration_mins = (h2 * 60 + m2) - (h1 * 60 + m1)
+                except:
+                    new_lec.duration_mins = 0
+                    
                 self.lectures.append(new_lec)
             current_date += timedelta(days=1)
 
-    def recalculate_all_lectures(self, new_start, new_end):
+    def recalculate_all_lectures(self, new_start, new_end, enable_numbers=True):
         preserved_statuses = {}
+        preserved_links = {}
+        
+        # Keep custom one-off events
+        one_off_lectures = [l for l in self.lectures if l.is_one_off]
+        
         for lec in self.lectures:
-            preserved_statuses[(lec.date_str, lec.start_time)] = lec.status
-        self.lectures = []
+            if not lec.is_one_off:
+                preserved_statuses[(lec.date_str, lec.start_time)] = lec.status
+                preserved_links[(lec.date_str, lec.start_time)] = lec.external_link
+                
+        self.lectures = one_off_lectures
         for rule in self.meetings:
-            self._generate_lectures_for_rule(new_start, new_end, rule, preserved_statuses)
-        self.lectures.sort(key=lambda l: (l.date_obj, l.start_time))
+            self._generate_lectures_for_rule(new_start, new_end, rule, preserved_statuses, preserved_links)
+            
+        self.lectures.sort(key=lambda l: (l.date_obj, l.start_time if l.start_time else "00:00"))
+        
+        # Auto-numbering logic
+        if enable_numbers:
+            counters = {}
+            for lec in self.lectures:
+                if not lec.is_one_off:
+                    base_title = lec.title
+                    counters[base_title] = counters.get(base_title, 0) + 1
+                    lec.meeting_number = counters[base_title]
+        else:
+            for lec in self.lectures:
+                lec.meeting_number = None
 
     def to_dict(self):
         return {
@@ -85,7 +120,7 @@ class Course:
 
     @classmethod
     def from_dict(cls, data):
-        course = cls(course_id=data["course_id"], title=data["title"], lecturer=data["lecturer"], course_code=data.get("course_code", ""), link=data.get("link", ""))
+        course = cls(course_id=data["course_id"], title=data["title"], lecturer=data.get("lecturer", ""), course_code=data.get("course_code", ""), link=data.get("link", ""))
         course.color = data.get("color", random.choice(COURSE_COLORS))
         course.meetings = data.get("meetings", [])
         course.lectures = [LectureSession.from_dict(l) for l in data.get("lectures", [])]
