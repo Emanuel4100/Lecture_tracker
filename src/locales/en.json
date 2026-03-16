@@ -15,7 +15,7 @@
         "skipped_short": "Skipped", "cancelled_short": "Cancelled"
     },
     "meeting_types": {
-        "lecture": "Lecture", "practice": "Practice", "lab": "Lab"
+        "lecture": "Lecture", "practice": "Practice", "lab": "Lab", "recording": "Recording", "other": "Other"
     },
     "plurals": {
         "lecture": "Lectures", "practice": "Practices", "lab": "Labs"
@@ -51,15 +51,28 @@
         "tab_lectures": "Lectures", "tab_missing": "Pending",
         "tab_past": "Past Lectures", "tab_future": "Future Lectures", "tab_stats": "Statistics",
         "settings": "Settings", "week_of": "Week of: {date}", "end_of_sem": "End",
-        "overlap": "Overlap!", "no_lectures": "No lectures to display"
+        "overlap": "Overlap!", "no_lectures": "No lectures to display",
+        "sort_date": "Sort: Date",
+        "sort_duration": "Sort: Duration",
+        "sort_type": "Sort: Type",
+        "add_task": "Add Task / Event",
+        "add_recording": "Add Recording Task",
+        "add_custom_event": "Add Custom Event",
+        "select_course": "Select Course",
+        "topic_title": "Topic / Title",
+        "duration_mins": "Duration (mins)",
+        "meeting_type": "Type"
     },
     "settings": {
         "title": "Settings", "dates": "Semester Dates:", "display": "Display Settings:",
         "show_weekend": "Show Weekend on Weekly Board",
-        "language": "Language (שפת ממשק)", "save_success": "Settings saved successfully!"
+        "enable_numbering": "Enable auto meeting numbers",
+        "language": "Language (שפת ממשק)", "save_success": "Settings saved successfully!",
+        "change_start": "Change Start", "change_end": "Change End"
     },
     "stats": {
-        "no_data": "No data to display 📊", "title": "Your Semester Progress",
+        "no_data": "No data to display 📊", "title": "Statistics",
+        "total_time": "Total Time", "time_completed": "Time Completed", "total_meetings": "Total Meetings",
         "total_lectures": "Total {total} lectures defined", "attended": "Attended/Watched ({count})",
         "skipped": "Skipped ({count})", "needs_watching": "Pending/Future ({count})", "cancelled": "Cancelled ({count})"
     },
@@ -73,5 +86,15 @@
         "select_course": "Select Course",
         "no_courses": "No courses available",
         "success_msg": "Meeting successfully added to '{title}'!"
+    },
+    "lecture": {
+        "edit_meeting": "Edit Meeting",
+        "update_details": "Update Details:",
+        "link_label": "Link (Drive/Zoom)",
+        "duration_label": "Duration (mins)",
+        "no_room": "No Room",
+        "custom_task": "Custom Task",
+        "attachment_included": "Link/Material Attached",
+        "change_status": "Change Status"
     }
 }

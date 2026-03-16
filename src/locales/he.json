@@ -25,7 +25,8 @@
         "lecture": "הרצאה",
         "practice": "תרגול",
         "lab": "מעבדה",
-        "other": "אחר" 
+        "recording": "הקלטה",
+        "other": "אחר"
     },
     "plurals": {
         "lecture": "הרצאות", "practice": "תרגולים", "lab": "מעבדות"
@@ -78,25 +79,26 @@
         "select_course": "בחר קורס",
         "topic_title": "נושא / כותרת",
         "duration_mins": "אורך משוער (בדקות)",
-
+        "meeting_type": "סוג"
     },
     "settings": {
         "title": "הגדרות", "dates": "תאריכי הסמסטר:", "display": "הגדרות תצוגה:",
         "show_weekend": "הצג סופ״ש בלוח השבועי (שישי-שבת)",
-        "language": "שפת ממשק (Language)", "save_success": "ההגדרות נשמרו בהצלחה!"
+        "enable_numbering": "הפעל מספור מפגשים אוטומטי",
+        "language": "שפת ממשק (Language)", "save_success": "ההגדרות נשמרו בהצלחה!",
+        "change_start": "שנה התחלה", "change_end": "שנה סיום"
     },
     "stats": {
         "no_data": "אין נתונים להציג כרגע 📊",
         "title": "סטטיסטיקות",
         "total_time": "זמן כולל (בסמסטר)",
-        "total_lectures": "סה״כ {total} הרצאות הוגדרו במערכת",
         "time_completed": "זמן למידה שהושלם",
         "total_meetings": "סך הכל מפגשים",
+        "total_lectures": "סה״כ {total} הרצאות הוגדרו במערכת",
         "attended": "ראיתי / נכחתי ({count})",
         "skipped": "דילגתי ({count})",
         "needs_watching": "טרם נצפה / עתידי ({count})",
-        "cancelled": "בוטלה ({count})",
-        
+        "cancelled": "בוטלה ({count})"
     },
     "schedule_menu": {
         "add_options": "?מה תרצה להוסיף",
@@ -110,13 +112,13 @@
         "success_msg": "המפגש נוסף בהצלחה לקורס '{title}'!"
     },
     "lecture": {
-    "edit_meeting": "ערוך מפגש",
-    "update_details": "עדכן פרטי מפגש:",
-    "link_label": "קישור (Drive/Zoom/הקלטה)",
-    "duration_label": "אורך (בדקות)",
-    "no_room": "ללא מיקום",
-    "custom_task": "משימה מותאמת",
-    "attachment_included": "מצורף קישור/חומר",
-    "change_status": "שנה סטטוס"
+        "edit_meeting": "ערוך מפגש",
+        "update_details": "עדכן פרטי מפגש:",
+        "link_label": "קישור (Drive/Zoom/הקלטה)",
+        "duration_label": "אורך (בדקות)",
+        "no_room": "ללא מיקום",
+        "custom_task": "משימה מותאמת",
+        "attachment_included": "מצורף קישור/חומר",
+        "change_status": "שנה סטטוס"
     }
 }

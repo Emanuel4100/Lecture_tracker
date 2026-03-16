@@ -57,7 +57,10 @@ class SettingsView(ft.Column):
     def update_date_texts(self):
         if self.schedule.semester_start: self.start_text.value = self.schedule.semester_start.strftime("%d/%m/%Y")
         if self.schedule.semester_end: self.end_text.value = self.schedule.semester_end.strftime("%d/%m/%Y")
-        self.update()
+        
+        # התיקון: מבצע רענון תצוגה רק אם הרכיב כבר נטען בהצלחה לעמוד!
+        if self.page:
+            self.update()
 
     def change_language(self, e):
         self.schedule.language = self.lang_dropdown.value
