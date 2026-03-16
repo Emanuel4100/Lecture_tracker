@@ -67,6 +67,38 @@ class LecturesList(ft.Column):
         else:
             lectures.sort(key=lambda x: (x.date_obj if x.date_obj else datetime.min.date(), x.start_time if x.start_time else "00:00"))
 
+        # --- חישוב הזמן הכולל של ההרצאות שמוצגות כרגע ---
+        total_mins = 0
+        for l in lectures:
+            if l.duration_mins:
+                total_mins += l.duration_mins
+            elif l.start_time and l.end_time:
+                try:
+                    h1, m1 = map(int, l.start_time.split(':'))
+                    h2, m2 = map(int, l.end_time.split(':'))
+                    total_mins += (h2 * 60 + m2) - (h1 * 60 + m1)
+                except Exception:
+                    pass
+
+        hours = total_mins // 60
+        mins = total_mins % 60
+        time_str = ""
+        if hours > 0: time_str += f"{hours}h "
+        time_str += f"{mins}m"
+        if total_mins == 0: time_str = "0m"
+
+        # יצירת השורה של סך הכל זמן (מוסתרת אם הרשימה ריקה)
+        summary_text = t("schedule.total_duration", default="סה״כ זמן:") + f" {time_str}"
+        summary_row = ft.Container(
+            content=ft.Row([
+                ft.Image(src="icons/access_time.svg", width=18, height=18, color="primary"),
+                ft.Text(summary_text, weight="bold", color="primary", size=14)
+            ], spacing=6, alignment=ft.MainAxisAlignment.START),
+            padding=ft.padding.only(left=20, right=20, top=5),
+            visible=len(lectures) > 0  # להציג רק אם יש הרצאות להשלים
+        )
+        # --------------------------------------------------
+
         if not lectures:
             empty_state = ft.Column([
                 ft.Image(src="icons/event_busy.svg", width=60, height=60, color="onSurfaceVariant"), 
@@ -79,5 +111,6 @@ class LecturesList(ft.Column):
 
         self.controls = [
             ft.Container(content=top_bar, padding=ft.padding.only(top=10, bottom=5, left=10, right=10)),
+            summary_row, # הוספת השורה ממש מתחת לתפריטי הסינון
             list_view
         ]

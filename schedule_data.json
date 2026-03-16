@@ -54,7 +54,7 @@
                     "end_time": "18:30",
                     "duration_mins": 150,
                     "room": "",
-                    "status": "status.attended",
+                    "status": "status.watched",
                     "course_color": "orange100",
                     "is_one_off": false,
                     "meeting_number": 1,
@@ -70,7 +70,7 @@
                     "end_time": "15:00",
                     "duration_mins": 300,
                     "room": "",
-                    "status": "status.attended",
+                    "status": "status.watched",
                     "course_color": "orange100",
                     "is_one_off": false,
                     "meeting_number": 2,
@@ -172,6 +172,22 @@
                     "meeting_number": 5,
                     "external_link": "",
                     "meeting_type": "meeting_types.lecture"
+                },
+                {
+                    "session_id": "1773685194.420505",
+                    "title": "מבנה המחשב - מעבדה בונוס",
+                    "lecturer": "לא הוגדר",
+                    "date_str": "16/03/2026",
+                    "start_time": "",
+                    "end_time": "",
+                    "duration_mins": 45,
+                    "room": "",
+                    "status": "status.needs_watching",
+                    "course_color": "orange100",
+                    "is_one_off": true,
+                    "meeting_number": null,
+                    "external_link": "",
+                    "meeting_type": "meeting_types.lab"
                 }
             ]
         }
