@@ -13,9 +13,8 @@ class LectureCard(ft.Container):
         self.current_dialog = None
         
         self.border_radius = 8 if self.is_mobile else 12
-        self.padding = 4 if self.is_mobile else 8
+        self.padding = 4 if self.is_mobile else 12  # קצת יותר ריווח לרשימה כדי שתנשום
         self.margin = ft.margin.only(bottom=5 if self.is_mobile else 8)
-        self.bgcolor = self.lecture.course_color
         self.shadow = ft.BoxShadow(spread_radius=0, blur_radius=2, color="shadow", offset=ft.Offset(0, 1))
 
         status_colors = {
@@ -26,13 +25,19 @@ class LectureCard(ft.Container):
             LectureStatus.CANCELLED: AppTheme.STATUS_CANCELLED
         }
         b_color = status_colors.get(self.lecture.status, "transparent")
-        self.border = ft.border.all(1.5, b_color) if b_color != "transparent" else None
-
+        
+        # --- ההפרדה החכמה בין היומן לרשימה ---
         if self.is_mobile:
+            # בלוח השבועי: שומרים על בלוק צבע מלא כדי שיראה כמו יומן
+            self.bgcolor = self.lecture.course_color
+            self.border = ft.border.all(1.5, b_color) if b_color != "transparent" else None
             self.content = self.build_compact_view()
             self.on_click = self.open_popup
             self.ink = True 
         else:
+            # בלשונית ההרצאות: רקע נקי עם מסגרת עדינה
+            self.bgcolor = "surface"
+            self.border = ft.border.all(1.5, b_color) if b_color != "transparent" else ft.border.all(1, "outlineVariant")
             self.content = self.build_detailed_view()
 
     def build_compact_view(self):
@@ -42,7 +47,10 @@ class LectureCard(ft.Container):
         ], alignment=ft.MainAxisAlignment.CENTER, horizontal_alignment=ft.CrossAxisAlignment.CENTER, expand=True)
 
     def build_detailed_view(self):
-        title = ft.Text(self.lecture.display_title, weight="w600", size=13, color="onSurface", no_wrap=True, overflow=ft.TextOverflow.ELLIPSIS)
+        # נגיעת הצבע: עיגול קטן ליד הכותרת במקום לצבוע את כל הכרטיסייה
+        course_dot = ft.Container(width=12, height=12, border_radius=6, bgcolor=self.lecture.course_color)
+        title = ft.Text(self.lecture.display_title, weight="bold", size=14, color="onSurface", no_wrap=True, overflow=ft.TextOverflow.ELLIPSIS, expand=True)
+        title_row = ft.Row([course_dot, title], spacing=8, alignment=ft.MainAxisAlignment.START)
         
         time_elements = []
         if self.show_date:
@@ -67,7 +75,7 @@ class LectureCard(ft.Container):
             ft.Text(self.lecture.room if self.lecture.room else t("lecture.no_room", default="ללא מיקום"), color="onSurfaceVariant", size=11, no_wrap=True, overflow=ft.TextOverflow.ELLIPSIS)
         ])
 
-        time_room = ft.Row(time_elements, spacing=2, alignment=ft.MainAxisAlignment.START)
+        time_room = ft.Row(time_elements, spacing=4, alignment=ft.MainAxisAlignment.START)
         
         link_container = ft.Container()
         if self.lecture.external_link:
@@ -78,8 +86,6 @@ class LectureCard(ft.Container):
 
         actions_row = ft.Row([
             self.build_single_status_button(),
-            
-            # כפתור עריכה בטוח לחלוטין שמחליף את ה-IconButton!
             ft.Container(
                 content=ft.Image(src="icons/edit.svg", width=18, height=18, color="primary"), 
                 tooltip=t("lecture.edit_meeting", default="ערוך"), 
@@ -90,7 +96,7 @@ class LectureCard(ft.Container):
             )
         ], alignment=ft.MainAxisAlignment.SPACE_BETWEEN)
 
-        return ft.Column([title, time_room, link_container, ft.Divider(height=1, color="outlineVariant"), actions_row], spacing=6)
+        return ft.Column([title_row, time_room, link_container, ft.Divider(height=1, color="outlineVariant"), actions_row], spacing=8)
 
     def build_single_status_button(self):
         options = [
@@ -165,7 +171,11 @@ class LectureCard(ft.Container):
         e.page.overlay.append(self.current_dialog); self.current_dialog.open = True; e.page.update()
 
     def build_popup_content(self):
-        title = ft.Text(self.lecture.display_title, weight="bold", size=18, color="onSurface", text_align="center")
+        # גם בפופ-אפ במובייל: עברנו לעיצוב נקי עם עיגול צבע
+        course_dot = ft.Container(width=14, height=14, border_radius=7, bgcolor=self.lecture.course_color)
+        title_text = ft.Text(self.lecture.display_title, weight="bold", size=18, color="onSurface", text_align="center", expand=True)
+        title_row = ft.Row([course_dot, title_text], alignment=ft.MainAxisAlignment.CENTER, spacing=8)
+        
         link_container = ft.Text(f"Link: {self.lecture.external_link}", color="primary", size=12, italic=True) if self.lecture.external_link else ft.Container()
 
         options = [
@@ -191,15 +201,16 @@ class LectureCard(ft.Container):
                     ft.Image(src=f"icons/{icon_name}.svg", width=22, height=22, color=active_color if is_active else "onSurfaceVariant"),
                     ft.Text(text_label, size=15, weight="bold" if is_active else "normal", color=active_color if is_active else "onSurface")
                 ], alignment=ft.MainAxisAlignment.START),
-                padding=10, border_radius=8, bgcolor="surface" if is_active else "transparent",
+                padding=10, border_radius=8, 
+                bgcolor="surfaceVariant" if is_active else "transparent",
                 border=ft.border.all(2, active_color) if is_active else ft.border.all(1, "outlineVariant"),
                 on_click=make_click_handler(status_value), ink=True
             )
             buttons.append(btn)
 
-        edit_btn = ft.TextButton(content=ft.Row([ft.Image(src="icons/edit.svg", width=18, height=18, color="primary"), ft.Text(t("lecture.edit_meeting", default="ערוך"), color="primary")]), on_click=self.open_edit_dialog)
+        edit_btn = ft.TextButton(content=ft.Row([ft.Image(src="icons/edit.svg", width=18, height=18, color="primary"), ft.Text(t("lecture.edit_meeting", default="ערוך"), color="primary")], alignment=ft.MainAxisAlignment.CENTER), on_click=self.open_edit_dialog)
 
-        return ft.Column([title, link_container, ft.Divider(height=1, color="outlineVariant"), ft.Column(buttons, spacing=8), edit_btn], spacing=10, tight=True)
+        return ft.Column([title_row, link_container, ft.Divider(height=1, color="outlineVariant"), ft.Column(buttons, spacing=8), edit_btn], spacing=10, tight=True)
 
     def open_popup(self, e):
         def close_dlg(args):
@@ -207,7 +218,8 @@ class LectureCard(ft.Container):
 
         self.current_dialog = ft.AlertDialog(
             content=ft.Container(content=self.build_popup_content(), width=320, padding=10),
-            shape=ft.RoundedRectangleBorder(radius=15), bgcolor=self.lecture.course_color,
+            shape=ft.RoundedRectangleBorder(radius=15), 
+            bgcolor="surface", # הרקע של הפופ-אפ הפך לנקי (לבן/אפור בהיר) במקום צבעוני
             actions=[ft.TextButton(t("common.back", default="חזור"), on_click=close_dlg)],
             actions_alignment=ft.MainAxisAlignment.END
         )
