@@ -1,4 +1,4 @@
-# LectureTracker app
+# LecCheck app
 
 ## Run the app
 
